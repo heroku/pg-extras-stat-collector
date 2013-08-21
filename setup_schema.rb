@@ -6,5 +6,5 @@ DB = Sequel.connect(ENV['DATABASE_URL'])
 
 DB.run("CREATE TABLE commands(
   command character varying(50),
-  \"timestamp\" timestamp without time zone
+  \"timestamp\" timestamp with time zone default now()
 )")
