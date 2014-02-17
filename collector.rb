@@ -3,7 +3,7 @@ require 'sequel'
 
 class Collector < Sinatra::Base
   COMMANDS = %w[
-    cache_hit 
+    cache_hit
     index_usage
     blocking
     locks
@@ -17,6 +17,7 @@ class Collector < Sinatra::Base
     vacuum_stats
     extensions
     outliers
+    calls
   ]
   DB = Sequel.connect(ENV['DATABASE_URL'])
 
@@ -31,10 +32,11 @@ class Collector < Sinatra::Base
 
   post '/command' do
     if COMMANDS.include? params[:command]
+      logger.info "Received #{params[:command]}"
       DB[:commands].insert(command: params[:command])
       status 200
     else
-      puts "bad param"
+      logger.info "Received bad param"
       status 403
     end
   end
