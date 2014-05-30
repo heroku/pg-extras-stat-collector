@@ -18,6 +18,7 @@ class Collector < Sinatra::Base
     extensions
     outliers
     calls
+    diagnose
   ]
   DB = Sequel.connect(ENV['DATABASE_URL'])
 
