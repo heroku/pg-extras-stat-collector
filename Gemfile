@@ -3,7 +3,7 @@ ruby '2.1.0'
 
 gem 'sinatra'
 gem 'pg'
-gem 'puma'
+gem 'puma', '>= 5.6.8'
 gem 'sequel'
 
 group :development do
